@@ -3,6 +3,8 @@ import styles from "./maker.module.css";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import { useNavigate } from "react-router-dom";
+import Editor from "../editor/editor";
+import Preview from "../preview/preview";
 
 const Maker = ({ authService }) => {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ const Maker = ({ authService }) => {
     authService.logout();
   };
 
+  // 로그아웃 상태일 때 로그인 페이지로 이동
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
@@ -21,8 +24,12 @@ const Maker = ({ authService }) => {
 
   return (
     <section className={styles.maker}>
-      <Header onLogout={onLogout}></Header>
-      <Footer></Footer>
+      <Header onLogout={onLogout} />
+      <div className={styles.container}>
+        <Editor></Editor>
+        <Preview></Preview>
+      </div>
+      <Footer />
     </section>
   );
 };
