@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Editor from "../editor/editor";
 import Preview from "../preview/preview";
 
-const Maker = ({ authService }) => {
+const Maker = ({ authService, FileInput }) => {
   const [cards, setCards] = useState({
     // key, value
     1: {
@@ -59,12 +59,7 @@ const Maker = ({ authService }) => {
     });
   });
 
-  const addCard = (card) => {
-    const updated = [...cards, card];
-    setCards(updated);
-  };
-
-  const updateCard = (card) => {
+  const createOrUpdateCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;
@@ -86,9 +81,10 @@ const Maker = ({ authService }) => {
       <div className={styles.container}>
         <Editor
           cards={cards}
-          addCard={addCard}
+          addCard={createOrUpdateCard}
           deleteCard={deleteCard}
-          updateCard={updateCard}
+          updateCard={createOrUpdateCard}
+          FileInput={FileInput}
         ></Editor>
         <Preview cards={cards}></Preview>
       </div>

@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Button from "../button/button";
 import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./card_edit_form.module.css";
-const CardEditForm = ({ card, updateCard, deleteCard }) => {
+const CardEditForm = ({ card, createOrUpdateCard, deleteCard }) => {
   const { name, company, title, email, message, theme, fileName, fileURL } =
     card;
 
@@ -19,7 +19,7 @@ const CardEditForm = ({ card, updateCard, deleteCard }) => {
 
   const onChange = (e) => {
     e.preventDefault();
-    updateCard({
+    createOrUpdateCard({
       ...card,
       [e.currentTarget.name]: e.currentTarget.value,
     });

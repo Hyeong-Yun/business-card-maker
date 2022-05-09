@@ -1,6 +1,6 @@
 import React from "react";
 
-const ImageFileInput = () => {
+const ImageFileInput = ({ imageUploader }) => {
   return <button>Image</button>;
 };
 
